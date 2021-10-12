@@ -1,0 +1,98 @@
+\documentclass{article}
+
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{courier}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[hidelinks]{hyperref}
+
+\definecolor{lightgray}{gray}{0.95}
+
+\lstset{
+	basicstyle=\ttfamily,
+	backgroundcolor=\color{lightgray},
+	numbers=left,
+	tabsize=3,
+	frame=tblr,
+    breaklines=true, 
+    postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}
+}
+
+\title{uverilog2cnf\\Upgraded Verilog2CNF}
+\date{July 2021}
+\author{Mohammad (Raha) Moradi Shahmiri\\raham9619@gmail.com}
+
+
+
+\begin{document}
+	\pagenumbering{gobble}
+	\maketitle
+	%\newpage
+	%\tableofcontents
+	\newpage
+
+	\pagenumbering{arabic}
+
+	\section{Introduction}
+	uverilog2cnf, a.k.a uv2cnf, is meant as a tool for converting verilog gate-level descriptions to 
+    cnf output suitable for debugging. Currently it supports conversion of a gate-level description to a standard 
+    cnf file, alongside variable-to-number map. The library should be supplied in \textit{cnflib} format, which is a simple 
+    custom format for storing CNF description of a cell library. Also a custom solution may be provided in \textit{sol} format 
+    as well, so that the generated output includes the solution clauses. 
+
+    \subsection{TODO}
+    Support for standard \textit{liberty} format used for standard cell description was meant to be available in the first 
+    version, but, as new nets might be created during conversion of liberty cells to predefined clauses, this feature was abandoned 
+    for the current version, because new net names would greatly alter the debug process. Also as this tool is a work in progress, 
+    support for the Verilog format is pretty limited. Support for assign statements is meant to be added in next versions, in parallel 
+    to the support for liberty function format, as both require similar processing and synthesis. 
+
+    \subsection {Usage}
+    \textit{uverilog2cnf <input.v> <library.cnflib> <cnfoutput-prefix> <mapoutput-prefix> [solution.sol] [cardinality.card]}
+
+    \textit{input.v} denotes the input gate-level verilog file.
+
+    \textit{library.cnflib} denotes the cell library. The format shall be described further on.
+
+    \textit{cnfoutput-prefix}  and \textit{mapoutput-prefix} are the prefixes used for generating output files. 
+    For a module named \textit{-sample-module}, the output files would be 
+
+    \lstinline{cnfoutput-prefix-samplemodule.cnf}
+
+    \lstinline{mapoutput-prefix-samplemodule.map}
+
+    \textit{solution.sol} (optional) refers to a solution file in sol format. The format shall be described further on.
+
+    \textit{cardinality.card} (optional) refers to a cardinality condition description. The format shall be described further on.
+
+    Sample files needed for a simple proof of work are available in the \textit{sample} folder and can be run by executing 
+    \textit{run.sh}.
+
+    \subsection{cnflib format}
+    cnflib format is based on the unweighted cnf format. The file should begin with the number of cells to be described. 
+    For each cell, its name is given. Then, like cnf format, number of variables (e.g. cell's ports) and clauses are listed.
+    In the next line, the name of each port is givern, which shall be used for port mapping, as well as improving readbillity of 
+    the generated variable map. Then each clause is listed as in cnf format. 
+
+    \lstinputlisting[caption={Sample cnflib},label={lst:cnflib} ]{doc/sample.cnflib}
+
+    \subsection{sol format}
+    This format is designed to show arbitrary number of solutions, with each solution being an assignment to an arbitrary number 
+    of variables. The file begins with the number of solutions. 
+    Each solution begins with a number denoting the number of assignments in that solution. Then each assignment is shown as the 
+    variable name followed by \textit{0} or \textit{1} as its value. 
+    This feature is intended to simplify solution clause insertion, by automaticaully applying the generated variable map to 
+    variable names and generating the clauses. 
+
+    \lstinputlisting[caption={Sample sol file},label={lst:sol} ]{doc/sample.sol}
+
+    \subsection{card format}
+    Like \textit{sol}, \textit{card} is meant to simplify insertion of cardinality clauses by automatically applying the variable map. 
+    Currently only 1-hot cardinality is implemented. 
+
+    \textit{num-of-variables number-of-1s-allowed [var1] [var2] ...}
+
+    \lstinputlisting[caption={Sample card file},label={lst:card} ]{doc/sample.card}
+
+\end{document}

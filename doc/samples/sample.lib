@@ -1,0 +1,9 @@
+library(demo) {
+  cell(nand) {
+    area: 4;
+    pin(Y) { direction: output;
+             function: "(A*B)'"; }
+    pin(A) { direction: input; }
+    pin(B) { direction: input; }
+  }
+}

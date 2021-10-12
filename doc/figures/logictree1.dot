@@ -1,0 +1,34 @@
+digraph "Logic Tree" {
+	op1 [label="="];
+	op2 [label="+"];
+	op3 [label="*"];
+	op4 [label="^"];
+	op5 [label="'"];
+	op6 [label="*"];
+	A1, A2 [label="A"];
+
+	A2  [xlabel=1];
+	B   [xlabel=2];
+	op6 [xlabel=3];
+	op5 [xlabel=4];
+	D   [xlabel=5];
+	op4 [xlabel=6];
+	C   [xlabel=7];
+	op3 [xlabel=8];
+	A1  [xlabel=9];
+	op2 [xlabel=10];
+	F   [xlabel=11];
+	op1 [xlabel=12];
+
+	op1 -> F;
+	op1 -> op2;
+	op2 -> A1;
+	op2 -> op3;
+	op3 -> C;
+	op3 -> op4;
+	op4 -> D;
+	op4 -> op5;
+	op5 -> op6;
+	op6 -> A2;
+	op6 -> B;
+}

@@ -1,0 +1,11 @@
+# Map of signal names to variable indexes
+# By uv2cnf
+# 115 variables
+_mux_sel_u0_ 1
+_A_1_ 2
+_u0_1_Z_mux_input_ 3
+_A_2_ 4
+_u0_2_Z_mux_input_ 5
+_A_3_ 6
+
+...

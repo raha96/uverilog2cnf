@@ -1,0 +1,7 @@
+c uv2cnf (Upgraded Verilog to CNF)
+p cnf 115 210
+-9 86 1 0
+9 -86 1 0
+-9 3 -1 0
+
+...
