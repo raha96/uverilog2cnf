@@ -1,7 +1,7 @@
 *.aux
 *.log
 *.pdf
-*.syntex*
+*.synctex*
 *.toc
 *.log
 *.out
