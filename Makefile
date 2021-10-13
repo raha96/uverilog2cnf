@@ -1,7 +1,7 @@
 FLAGS=-fconcepts
 MINGW=-static -static-libgcc -static-libstdc++
 
-default: FORCE
+linux: FORCE
 	g++ main.cpp $(FLAGS) -o build/uverilog2cnf
 
 windows: FORCE
@@ -10,7 +10,8 @@ windows: FORCE
 unmapper: utils/unmapper.cpp
 	g++ utils/unmapper.cpp -o unmapper
 
-doc: FORCE
-	xelatex doc/manual.tex -output-directory=doc
+docs: FORCE
+	cd doc && make
+	mv doc/*.pdf build/docs/
 
 FORCE:
