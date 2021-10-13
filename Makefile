@@ -7,8 +7,11 @@ linux: FORCE
 windows: FORCE
 	x86_64-w64-mingw32-g++ main.cpp $(FLAGS) $(MINGW) -o build/uverilog2cnf.exe
 
-unmapper: utils/unmapper.cpp
-	g++ utils/unmapper.cpp -o unmapper
+unmapper_linux: unmapper/unmapper.cpp
+	g++ unmapper/unmapper.cpp -o build/unmapper
+
+unmapper_windows: unmapper/unmapper.cpp
+	x86_64-w64-mingw32-g++ unmapper/unmapper.cpp $(MINGW) -o build/unmapper.exe
 
 docs: FORCE
 	cd doc && make
