@@ -143,7 +143,7 @@ f(W,A,B) = (W + A)(W + B)(W' + A' + B')
 با توجه به این که \lr{uv2cnf} به ازای هر ماژول یک زوج فایل cnf و map تولید می‌کند، بهتر است خروجی آن در یک پوشه قرار داده تا نظم آن حفظ شود. در این مثال پوشه‌ی \lr{output/} به عنوان پیشوند تولید خروجی به برنامه معرفی می‌شود تا خروجی تولیدشده در آن قرار بگیرد. بدین ترتیب با استفاده از فرمان زیر برنامه اجرا می‌شود: 
 
 \begin{flushleft}
-\lr{ \lstinline{./uverilog2cnf comparator_debug.v gtechsubset.cnflib output/ex1_ output/ex1_}}
+\lr{ \lstinline{./uverilog2cnf -v comparator_debug.v -l gtechsubset.cnflib -m output/ex1_ -c output/ex1_}}
 \end{flushleft}
 
 چند خط اول از دو فایل خروجی تولیدشده در کد \ref{lst:cnfex1} و \ref{lst:mapex1} آمده است. 

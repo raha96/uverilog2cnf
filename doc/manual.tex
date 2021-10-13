@@ -41,15 +41,8 @@
     custom format for storing CNF description of a cell library. Also a custom solution may be provided in \textit{sol} format 
     as well, so that the generated output includes the solution clauses. 
 
-    \subsection{TODO}
-    Support for standard \textit{liberty} format used for standard cell description was meant to be available in the first 
-    version, but, as new nets might be created during conversion of liberty cells to predefined clauses, this feature was abandoned 
-    for the current version, because new net names would greatly alter the debug process. Also as this tool is a work in progress, 
-    support for the Verilog format is pretty limited. Support for assign statements is meant to be added in next versions, in parallel 
-    to the support for liberty function format, as both require similar processing and synthesis. 
-
     \subsection {Usage}
-    \textit{uverilog2cnf <input.v> <library.cnflib> <cnfoutput-prefix> <mapoutput-prefix> [solution.sol] [cardinality.card]}
+    \textit{uverilog2cnf -v <input.v> -l <library.cnflib> -c <cnfoutput-prefix> -m <mapoutput-prefix> [-s solution.sol] [-d cardinality.card] [-x]}
 
     \textit{input.v} denotes the input gate-level verilog file.
 
